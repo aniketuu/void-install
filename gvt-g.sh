@@ -20,5 +20,9 @@ dracut --regenerate-all --force
 
 # TODO: create runit service to load the vGPU at reboot
 mkdir /etc/sv/setup-gvt-g
-echo 'echo 1e0d01e0-fe65-438a-9120-2066570851f4 > /sys/devices/pci0000:00/0000:00:02.0/mdev_supported_types/i915-GVTg_V5_4/create' > /etc/sv/setup-gvt-g/run
+echo '#!/bin/sh' > /etc/sv/setup-gvt-g/run
+echo 'echo 1e0d01e0-fe65-438a-9120-2066570851f4 > /sys/devices/pci0000:00/0000:00:02.0/mdev_supported_types/i915-GVTg_V5_4/create' >> /etc/sv/setup-gvt-g/run
 chmod +x /etc/sv/setup-gvt-g/run
+
+# enable it
+ln -s /etc/sv/setup-gvt-g /var/service
