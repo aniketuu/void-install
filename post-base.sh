@@ -48,7 +48,7 @@ if [ $STEAM == "y" ]; then
 fi
 
 # utilities
-xbps-install -Suv mesa-demos python3-usb xterm
+xbps-install -Suv mesa-demos python3-usb xterm bash-completion qbittorrent mpv kitty
 
 # install qemu/kvm
 read -p "install qemu/kvm? [y/N] " VM
