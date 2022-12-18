@@ -29,6 +29,12 @@ xbps-install -Suv
 # ucode
 xbps-install -Suv intel-ucode
 
+# utilities
+xbps-install -Suv mesa-demos python3-usb xterm bash-completion qbittorrent mpv kitty bluez
+
+# bluetooth
+usermod -aG bluetooth $SUDO_USER
+
 # nvidia
 read -p "using nvidia? [y/N] " NVI
 if [ $NVI == "y" ]; then
@@ -46,9 +52,6 @@ if [ $STEAM == "y" ]; then
     fi
   xbps-install -Suv libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit mesa-dri-32bit libgcc-32bit libstdc++-32bit libdrm-32bit libglvnd-32bit steam
 fi
-
-# utilities
-xbps-install -Suv mesa-demos python3-usb xterm bash-completion qbittorrent mpv kitty
 
 # install qemu/kvm
 read -p "install qemu/kvm? [y/N] " VM
