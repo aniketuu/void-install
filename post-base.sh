@@ -50,4 +50,25 @@ fi
 # utilities
 xbps-install -Suv mesa-demos python3-usb xterm
 
+# install qemu/kvm
+read -p "install qemu/kvm? [y/N] " VM
+if [[ $VM = "y" ]]; then
+  # install stuff
+  xbps-install libvirt virt-manager virt-manager-tools qemu qemu-ga
+  
+  # premissions
+  usermod -aG kvm $SUDO_USER
+  usermod -aG libvirt $SUDO_USER
+  
+  modprobe kvm-intel
+  
+  # enable services
+  ln -s /etc/sv/libvirtd/ /var/service
+  ln -s /etc/sv/virtlockd/ /var/service
+  ln -s /etc/sv/virtlogd/ /var/service
+  
+  mkdir /var/lib/libvirt/isos
+fi
+
+echo "please reboot your system"
 
