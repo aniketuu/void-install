@@ -9,28 +9,38 @@ if [ $EUID -ne 0 ]; then
 fi
 
 # enable non-free repo and 32 bit repos
+echo "Enabling non-free repo"
 xbps-install void-repo-nonfree
+sleep 1s
 
 # 32 bit stuff
 read -p "want 32-bit packages? [y/N] " BIT32
 if [ $BIT32 == "y" ]; then
   xbps-install void-repo-multilib void-repo-multilib-nonfree
+  sleep 1s
 fi
 
 # setup mirror (I am using Singapore, Asia)
+echo "Changing mirrors"
 cp /usr/share/xbps.d/*-repository-*.conf /etc/xbps.d/
 sed -i 's|https://repo-default.voidlinux.org|https://void.webconverger.org/|g' /etc/xbps.d/*-repository-*.conf
 
 # sync and update
+echo "System update"
 xbps-install -Suv
+sleep 1s
 
 # TODO: figureout fstrim /
 
 # ucode
+echo "Installing ucode"
 xbps-install -Suv intel-ucode
+sleep 1s
 
 # utilities
+echo "Installing utilities"
 xbps-install -Suv mesa-demos python3-usb xterm bash-completion qbittorrent mpv kitty bluez bluez-alsa
+sleep 1s
 
 # bluetooth
 usermod -aG bluetooth $SUDO_USER
