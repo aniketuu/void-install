@@ -30,10 +30,11 @@ xbps-install -Suv
 xbps-install -Suv intel-ucode
 
 # utilities
-xbps-install -Suv mesa-demos python3-usb xterm bash-completion qbittorrent mpv kitty bluez
+xbps-install -Suv mesa-demos python3-usb xterm bash-completion qbittorrent mpv kitty bluez bluez-alsa
 
 # bluetooth
 usermod -aG bluetooth $SUDO_USER
+ln -s /etc/sv/bluetoothd/ /var/service
 
 # nvidia
 read -p "using nvidia? [y/N] " NVI
