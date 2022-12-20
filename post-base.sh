@@ -37,22 +37,21 @@ echo "Installing ucode"
 xbps-install -Suv intel-ucode
 sleep 1s
 
-# dbus
-read -p "enable dbus and elogind manually? [y/N] " DBUS
-if [ $DBUS == "y" ]; then
-  xbps-install -Sv dbus elogind
-  sleep 1s
-  ln -s /etc/sv/dbus/ /var/service
-  ln -s /etc/sv/elogind/ /var/service
-fi
+# # dbus
+# read -p "enable dbus and elogind manually? [y/N] " DBUS
+# if [ $DBUS == "y" ]; then
+#   xbps-install -Sv dbus elogind
+#   sleep 1s
+#   ln -s /etc/sv/dbus/ /var/service
+#   ln -s /etc/sv/elogind/ /var/service
+# fi
 
-# xorg
-# dbus
-read -p "install xorg manually? [y/N] " XORG
-if [ $XORG == "y" ]; then
-  xbps-install -Sv xorg
-  sleep 1s
-fi
+# # xorg
+# read -p "install xorg manually? [y/N] " XORG
+# if [ $XORG == "y" ]; then
+#   xbps-install -Sv xorg
+#   sleep 1s
+# fi
 
 # utilities
 echo "Installing utilities"
